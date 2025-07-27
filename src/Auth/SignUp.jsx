@@ -44,7 +44,7 @@ export default function SignUp() {
         };
         setLoading(true);
         try {
-            const url = "https://1234abcd.ngrok.io/api/users/register";
+            const url = "https://5e2f3f76c2e7.ngrok-free.app/api/users/register";
             const response = await fetch(url, options);
             const result = await response.json();
             console.log(result);
