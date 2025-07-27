@@ -55,7 +55,7 @@ export default function AddCourse({ setCourseAdded }) {
       formData.append("courseImage", data.courseImage);
     }
 
-    const res = await fetch("https://1234abcd.ngrok.io/api/courses/addCourse", {
+    const res = await fetch("https://5e2f3f76c2e7.ngrok-free.app/api/courses/addCourse", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,

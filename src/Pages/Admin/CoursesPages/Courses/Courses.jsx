@@ -21,7 +21,7 @@ export default function Courses() {
         }
         const fetchCourses = async () => {
             try {
-                const res = await fetch("https://1234abcd.ngrok.io/api/courses", options);
+                const res = await fetch("https://5e2f3f76c2e7.ngrok-free.app/api/courses", options);
                 const data = await res.json();
                 setCourses(data?.data);
                 setCourseCount(data?.data?.length || 0);
