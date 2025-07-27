@@ -22,7 +22,7 @@ export default function AddCourse({ setCourseAdded }) {
   const handleChange = (e) => {
     const { name, value, files } = e.target;
     console.log(files);
-    
+
     if (name === "price" && !/^\d*$/.test(value)) return;
 
     if (name === "courseImage") {
@@ -55,7 +55,7 @@ export default function AddCourse({ setCourseAdded }) {
       formData.append("courseImage", data.courseImage);
     }
 
-    const res = await fetch("http://localhost:3001/api/courses/addCourse", {
+    const res = await fetch("https://1234abcd.ngrok.io/api/courses/addCourse", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,

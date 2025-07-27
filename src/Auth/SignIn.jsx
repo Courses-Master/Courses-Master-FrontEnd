@@ -26,7 +26,7 @@ export default function SignIn() {
             body: JSON.stringify(data)
         };
         try {
-            const url = "http://localhost:3001/api/users/login";
+            const url = "https://1234abcd.ngrok.io/api/users/login";
             const response = await fetch(url, options);
             const result = await response.json();
             encryptStorage.setItem('auth', result)
