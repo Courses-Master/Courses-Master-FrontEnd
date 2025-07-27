@@ -4,8 +4,9 @@ import Button from '../ReuseableComponents/Button';
 import toast, { Toaster } from 'react-hot-toast';
 import { encryptStorage } from '../utils/storage';
 import { Navigate, useNavigate } from 'react-router-dom';
+import { ArrowBigLeft, ArrowDown, ArrowUp } from 'lucide-react';
 import { useContext } from 'react';
-import { Auth } from './AuthContext';
+import { Auth } from '../Context/AuthContext';
 export default function SignIn() {
     const storeAuth = encryptStorage.getItem('auth')
     const { setAuth } = useContext(Auth)
@@ -30,20 +31,24 @@ export default function SignIn() {
             const result = await response.json();
             encryptStorage.setItem('auth', result)
             setAuth(result)
-            toast.success("Sign In Successfully")
             if (result?.data?.role == "student" || storeAuth?.data?.role === "student") {
                 navigate("/student-home")
             } else {
                 navigate("/Admin-home")
             }
+            response.status === 200 ? toast.success("Sign In Successfully") : toast.error(result.message)
         } catch (error) {
             console.error("Error:", error.message);
-            toast.error(error.message)
+            toast.error("failed to Sign In")
         }
     };
 
     return (
         <div className='flex justify-between items-center h-screen max-lg:justify-center'>
+            <div onClick={() => navigate('/')} className=' absolute top-10 left-10 flex items-center cursor-pointer hover:animate-bounce' >
+                <ArrowBigLeft color='#15B79E' fill='#15B79E' size={25} className='mt-1  ' />
+                <span className='text-xl text-[#15B79E] font-bold'>Back</span>
+            </div>
             <div className="basis-1/2 sm:mx-20 max-sm:basis-full max-sm:px-10">
                 <div className='flex flex-col gap-5 items-center justify-center mb-4'>
                     <img className='w-28' src='/Vector.png' />
@@ -87,7 +92,7 @@ export default function SignIn() {
                     </div>
 
                     <Button
-                        className={"w-[100px] mt-1 cursor-pointer hover:opacity-80 bg-[#15B79E] text-white rounded-md py-1"}
+                        className={"w-full mt-1 cursor-pointer hover:opacity-80 bg-[#15B79E] text-white rounded-md py-1"}
                         text={'Sign In'}
                         type={"submit"}
                     />
