@@ -16,7 +16,7 @@ export default function AdminCentralData({ children }) {
         },
       }
       try {
-        const res = await fetch("http://localhost:3001/api/courses", options);
+        const res = await fetch("https://1234abcd.ngrok.io/api/courses", options);
         const data = await res.json();
 
         if (Array.isArray(data?.data) && data?.data?.length !== 0) {
