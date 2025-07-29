@@ -47,7 +47,7 @@ export default function VerifyCodePage() {
       body: JSON.stringify(payload)
     };
     try {
-      const url = "http://localhost:3001/api/verify-code";
+      const url = "https://courses-master-backend-production-f0cc.up.railway.app/api/verify-code";
       const response = await fetch(url, options);
       const result = await response.json();
       console.log(result);

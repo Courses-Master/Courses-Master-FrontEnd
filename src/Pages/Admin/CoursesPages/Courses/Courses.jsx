@@ -21,7 +21,7 @@ export default function Courses() {
         }
         const fetchCourses = async () => {
             try {
-                const res = await fetch("http://localhost:3001/api/courses", options);
+                const res = await fetch("https://courses-master-backend-production-f0cc.up.railway.app/api/courses", options);
                 const data = await res.json();
                 setCourses(data?.data);
                 setCourseCount(data?.data?.length || 0);

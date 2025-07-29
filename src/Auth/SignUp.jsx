@@ -44,7 +44,7 @@ export default function SignUp() {
         };
         setLoading(true);
         try {
-            const url = "http://localhost:3001/api/users/register";
+            const url = "https://courses-master-backend-production-f0cc.up.railway.app/api/users/register";
             const response = await fetch(url, options);
             const result = await response.json();
             console.log(result);

@@ -8,7 +8,7 @@ const CourseList = ({ courses, loading }) => {
         <div className="p-8 bg-gray-100 min-h-screen">
             {loading && (<LoadingPage />)}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {courses.map((course) => (
+                {courses?.map((course) => (
                     <div
                         key={course._id}
                         className="bg-white flex flex-col   duration-700 rounded-2xl shadow-md overflow-hidden transition hover:shadow-xl"

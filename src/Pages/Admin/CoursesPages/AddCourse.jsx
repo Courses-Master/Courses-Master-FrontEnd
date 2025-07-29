@@ -55,7 +55,7 @@ export default function AddCourse({ setCourseAdded }) {
       formData.append("courseImage", data.courseImage);
     }
 
-    const res = await fetch("http://localhost:3001/api/courses/addCourse", {
+    const res = await fetch("https://courses-master-backend-production-f0cc.up.railway.app/api/courses/addCourse", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
