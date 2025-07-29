@@ -47,7 +47,7 @@ export default function VerifyCodePage() {
       body: JSON.stringify(payload)
     };
     try {
-      const url = "https://5e2f3f76c2e7.ngrok-free.app/api/verify-code";
+      const url = "http://localhost:3001/api/verify-code";
       const response = await fetch(url, options);
       const result = await response.json();
       console.log(result);
