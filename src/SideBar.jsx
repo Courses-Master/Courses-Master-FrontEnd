@@ -20,7 +20,7 @@ export default function Sidebar() {
     const navItems = [
         { label: "Dashboard", icon: <Home size={20} />, href: "/Admin-home" },
         { label: "Courses", icon: <User size={20} />, href: "/courses" },
-        { label: "instructors", icon: <Book size={20} />, href: "#" },
+        { label: "instructors", icon: <Book size={20} />, href: "/instructors" },
         { label: "Settings", icon: <Settings size={20} />, href: "#" },
     ];
 
