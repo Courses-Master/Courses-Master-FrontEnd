@@ -22,7 +22,7 @@ const InstructorList = () => {
         setInstructors(res.data?.data || []);
       } catch (error) {
         console.error(error);
-      }
+      } 
     };
     fetchInstructors()
   }, [])
