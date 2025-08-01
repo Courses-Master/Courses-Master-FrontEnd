@@ -4,54 +4,29 @@ import { Link, useLocation } from "react-router-dom";
 import SideBar from "../../../SideBar";
 import { encryptStorage } from "@/utils/storage";
 
-const STORAGE_KEY = "instructors";
-
 const InstructorList = () => {
   const [instructors, setInstructors] = useState([]);
   const location = useLocation();
   const token = encryptStorage.getItem("auth")?.token;
 
-  const fetchInstructors = async () => {
-    try {
-      const res = await axios.get(
-        "https://courses-master-backend-production-f0cc.up.railway.app/api/Instructors",
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
-      const apiData = Array.isArray(res.data) ? res.data : [];
-      const stored = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
-      const merged = mergeUnique(stored, apiData);
-      setInstructors(merged);
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(merged));
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const mergeUnique = (arr1, arr2) => {
-    const map = new Map();
-    [...arr1, ...arr2].forEach((item) => {
-      map.set(item.email, item);
-    });
-    return Array.from(map.values());
-  };
-
   useEffect(() => {
-    const stored = localStorage.getItem(STORAGE_KEY);
-    if (stored) {
-      setInstructors(JSON.parse(stored));
-    }
-    fetchInstructors();
-  }, []);
+    const fetchInstructors = async () => {
+      try {
+        const res = await axios.get(
+          "https://courses-master-backend-production-f0cc.up.railway.app/api/Instructors",
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
 
-  useEffect(() => {
-    if (location.state?.newInstructor) {
-      const updated = mergeUnique(instructors, [location.state.newInstructor]);
-      setInstructors(updated);
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
-    }
-  }, [location.state]);
+        setInstructors(res.data?.data || []);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchInstructors()
+  }, [])
+
 
   return (
     <div className="flex min-h-screen bg-gray-100">
