@@ -102,6 +102,7 @@ export default function AddCourse({ setCourseAdded }) {
   const triggerFileInput = () => {
     fileInputRef.current?.click();
   };
+  console.log();
 
   return (
     <>
