@@ -8,6 +8,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarProvider,
 } from "@/components/ui/sidebar"
 
 // Menu items.
@@ -21,6 +22,7 @@ const items = [
 
 export default function AdminSidebar() {
   return (
+    <SidebarProvider>
     <Sidebar className="h-screen border-r">
       <SidebarContent>
         <SidebarGroup>
@@ -42,5 +44,6 @@ export default function AdminSidebar() {
         </SidebarGroup>
       </SidebarContent>
     </Sidebar>
+    </SidebarProvider>
   )
 }

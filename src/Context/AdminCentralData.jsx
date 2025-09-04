@@ -4,7 +4,7 @@ import { encryptStorage } from "@/utils/storage";
 export const AdminDataContext = createContext();
 
 export default function AdminCentralData({ children }) {
-  const [courseCount, setCourseCount] = useState(0);
+  const [eventsCount, setEventsCount] = useState(0);
   const storeAuth = encryptStorage.getItem('auth');
   useEffect(() => {
     const fetchCourses = async () => {
@@ -16,11 +16,11 @@ export default function AdminCentralData({ children }) {
         },
       }
       try {
-        const res = await fetch("https://courses-master-backend-production-f0cc.up.railway.app/api/courses", options);
+        const res = await fetch("http://localhost:3001/api/events/get-events", options);
         const data = await res.json();
 
         if (Array.isArray(data?.data) && data?.data?.length !== 0) {
-          setCourseCount(data?.data?.length);
+          setEventsCount(data?.data?.length);
         }
       } catch (err) {
         console.error("Failed to fetch courses", err);
@@ -28,10 +28,10 @@ export default function AdminCentralData({ children }) {
     };
 
     fetchCourses();
-  }, [courseCount]);
+  }, [eventsCount,storeAuth?.token]);
 
   return (
-    <AdminDataContext.Provider value={{ courseCount, setCourseCount }}>
+    <AdminDataContext.Provider value={{ eventsCount, setEventsCount }}>
       {children}
     </AdminDataContext.Provider>
   );

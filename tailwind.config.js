@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        cairo: ['Cairo', 'sans-serif'],
+        poppins: ["Poppins", "sans-serif"],
       },
     },
   },

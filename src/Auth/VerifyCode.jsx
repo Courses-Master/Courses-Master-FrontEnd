@@ -47,7 +47,7 @@ export default function VerifyCodePage() {
       body: JSON.stringify(payload)
     };
     try {
-      const url = "https://courses-master-backend-production-f0cc.up.railway.app/api/verify-code";
+      const url = "http://localhost:3001/api/verify-code";
       const response = await fetch(url, options);
       const result = await response.json();
       console.log(result);
@@ -68,10 +68,10 @@ export default function VerifyCodePage() {
   };
 
   return (
-    <div className="min-h-screen bg-[url(/src/assets/Image.png)] bg-cover flex items-center justify-center bg-gradient-to-br from-blue-100 to-blue-300 p-4">
+    <div className="relative flex justify-center h-screen bg-[url(/src/assets/events-background-1.jpg)] bg-cover bg-center">
       {loading && <LoadingPage />}
-      <div className="bg-white shadow-2xl rounded-2xl p-8 max-w-md w-full">
-        <h2 className="text-2xl font-bold text-center text-[#15B79E] mb-2">Verification Code</h2>
+      <div className="bg-white mx-auto my-auto shadow-2xl rounded-2xl p-8 max-w-md w-full">
+        <h2 className="text-2xl font-bold text-center text-[#f43f5e] mb-2">Verification Code</h2>
         <p className="text-center text-gray-500 mb-6">Enter the 6-digit code sent to your email.</p>
 
         <form onSubmit={handleSubmit} className="space-y-6">
@@ -84,7 +84,7 @@ export default function VerifyCodePage() {
                 maxLength="1"
                 value={digit}
                 ref={(el) => (inputsRef.current[index] = el)}
-                className="w-12 h-12 text-center text-lg border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#15B79E]"
+                className="w-12 h-12 text-center text-lg border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#f43f5e]"
                 onChange={(e) => handleChange(e.target.value, index)}
                 onKeyDown={(e) => handleKeyDown(e, index)}
                 disabled={loading}
@@ -95,20 +95,22 @@ export default function VerifyCodePage() {
 
           <Button
             type="submit"
-            className="w-full mt-1 cursor-pointer hover:opacity-80 bg-[#15B79E] text-white rounded-md py-2 text-center"
-            disabled={loading || code.length !== 6}
-            text={
-              "Verify Code"
-            }
+            text="verify code"
+            className="w-full mt-4 text-white cursor-pointer rounded-lg py-2 font-medium relative overflow-hidden"
+            style={{
+              background: "linear-gradient(270deg, #8b5cf6, #ec4899, #f43f5e, #8b5cf6)",
+              backgroundSize: "600% 600%",
+              animation: "moveGradient 4s linear infinite"
+            }}
           >
 
-          </Button>
-        </form>
+        </Button>
+      </form>
 
-        <div className="text-center text-sm text-gray-500 mt-6">
-          Didn't get the code? <button className="text-[#15B79E] hover:underline">Resend</button>
-        </div>
+      <div className="text-center text-sm text-gray-500 mt-6">
+        Didn't get the code? <button className="text-[#f43f5e] hover:underline">Resend</button>
       </div>
+    </div>
     </div >
   );
 }
